@@ -1,0 +1,26 @@
+.map {
+  display: inline-block;
+  margin: 20px;
+  background: #0a0a0a;
+  padding: 10px;
+  border: 2px solid #5a189a;
+  box-shadow: 0 0 15px #5a189a;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #222;
+}
+
+.road {
+  background-color: #444; /* Calles */
+}
+
+.building {
+  background-color: #5a189a; /* Edificios */
+}
