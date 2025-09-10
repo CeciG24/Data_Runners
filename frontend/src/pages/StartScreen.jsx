@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import background from "/fondo_inicio.png";
+import background from "/background/fondo_inicio.png";
 import logo from "/data_runners-logo.png";
 
 export default function StartScreen() {

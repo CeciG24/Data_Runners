@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "/fondo_inicio.png";
+import background from "/background/fondo_inicio.png";
 import buho from "/buho-robot.png";
 import leopardo from "/leopardo.png";
 
@@ -10,8 +10,38 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleIngresar = () => {
-        alert(`Ingresando con usuario: ${user}`);
+    const handleIngresar = async () => {
+    if (!user.trim() || !password.trim()) {
+      alert("Por favor, llena todos los campos");
+      return;
+    }
+
+    // validaciones básicas
+    if (user.length < 3) {
+      alert("El usuario debe tener al menos 3 caracteres.");
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("La contraseña debe tener al menos 6 caracteres.");
+      return;
+    }
+
+    // Aquí enviarías los datos al backend (fetch/axios)
+    alert(`Ingresando con usuario: ${user}`);
+    const response = await fetch("https://tu-backend-en-render.com/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: user, password }),
+  
+    });
+
+    const data = await response.json();
+    if (data.success) {
+        alert(`Bienvenido ${data.user.usuario}`);
+    } else {
+        alert(data.error);
+    }
     };
 
     const handleLimpiar = () => {

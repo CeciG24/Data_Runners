@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "/fondo_inicio.png";
+import background from "/background/fondo_inicio.png";
 import buho from "/buho-robot.png";
 import leopardo from "/leopardo.png";
 
@@ -19,12 +19,50 @@ export default function SignUp() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRegistrar = () => {
-    alert(
-      `Registrado:\nUsuario: ${formData.usuario}\nEdad: ${formData.edad}\nEmail: ${formData.email}`
-    );
-    navigate("/login"); // ⬅️ después del registro, vuelve al login
-  };
+  const handleRegistrar = async () => {
+    const { usuario, edad, email, password } = formData;
+
+    // Validaciones básicas
+    if (!usuario.trim() || !edad || !email.trim() || !password.trim()) {
+      alert("Todos los campos son obligatorios.");
+      return;
+    }
+
+    if (usuario.length < 3) {
+      alert("El usuario debe tener al menos 3 caracteres.");
+      return;
+    }
+
+    if (isNaN(edad) || edad < 10 || edad > 100) {
+      alert("La edad debe ser un número entre 10 y 100.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("El email no es válido.");
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("La contraseña debe tener al menos 6 caracteres.");
+      return;
+    }
+
+    const response = await fetch("https://tu-backend-en-render.com/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    if (data.success) {
+        alert("Usuario registrado correctamente");
+        navigate("/login");
+    } else {
+        alert(data.error);
+    }
+};
 
   const handleLimpiar = () => {
     setFormData({
@@ -66,15 +104,6 @@ export default function SignUp() {
                 name="usuario"
                 placeholder="Usuario"
                 value={formData.usuario}
-                onChange={handleChange}
-                className="text-white w-full border p-2 mb-4 rounded "
-            />
-
-            <input
-                type="number"
-                name="edad"
-                placeholder="Edad"
-                value={formData.edad}
                 onChange={handleChange}
                 className="text-white w-full border p-2 mb-4 rounded "
             />
