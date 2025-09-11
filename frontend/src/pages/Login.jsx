@@ -7,54 +7,58 @@ import leopardo from "/leopardo.png";
 
 export default function Login() {
     const [user, setUser] = useState("");
-    const [password, setPassword] = useState("");
+    const [contraseña, setContraseña] = useState("");
     const navigate = useNavigate();
 
-    const handleIngresar = async () => {
-    if (!user.trim() || !password.trim()) {
-      alert("Por favor, llena todos los campos");
-      return;
-    }
+    const handleIngresar = async() => {
 
-    // validaciones básicas
-    if (user.length < 3) {
-      alert("El usuario debe tener al menos 3 caracteres.");
-      return;
-    }
+        if (!user.trim() || !contraseña.trim()) {
+            alert("Por favor, llena todos los campos");
+            return;
+        }
 
-    if (password.length < 6) {
-      alert("La contraseña debe tener al menos 6 caracteres.");
-      return;
-    }
+        // validaciones básicas
+        if (user.length < 3) {
+            alert("El usuario debe tener al menos 3 caracteres.");
+            return;
+        }
 
-    // Aquí enviarías los datos al backend (fetch/axios)
-    alert(`Ingresando con usuario: ${user}`);
-    const response = await fetch("https://tu-backend-en-render.com/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: user, password }),
-  
-    });
+        if (contraseña.length < 6) {
+            alert("La contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
 
-    const data = await response.json();
-    if (data.success) {
-        alert(`Bienvenido ${data.user.usuario}`);
-    } else {
-        alert(data.error);
-    }
+        
+
+        // Aquí enviarías los datos al backend (fetch/axios)
+        const response = await fetch("https://datarunnersdeploy.onrender.com/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: user, contraseña }),
+        
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        if (data.message!=null) {
+            // alert(`Bienvenido ${data.user.usuario}`);
+            // if(data.id_rol!=NULL){
+            //     navigate=("/roles")  
+            //  }
+            navigate("/roles")
+        } else {
+            alert(data.error);
+        }
     };
 
     const handleLimpiar = () => {
         setUser("");
-        setPassword("");
+        setContraseña("");
     };
 
     function handleRegistrar() {
-        // Validar usuario y contraseña
-
-        // alert("Redirigir a pantalla de registro");
-        navigate("/signup");s
-
+        navigate("/signup");
     } 
     
 
@@ -96,8 +100,8 @@ export default function Login() {
             <input
                 type="password"
                 placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={contraseña}
+                onChange={(e) => setContraseña(e.target.value)}
                 className="w-full text-white border p-2 mb-6 rounded"
             />
 

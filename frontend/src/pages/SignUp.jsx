@@ -7,10 +7,9 @@ import leopardo from "/leopardo.png";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    usuario: "",
-    edad: "",
+    nombre: "",
     email: "",
-    password: "",
+    contraseña: "",
   });
 
   const navigate = useNavigate();
@@ -20,21 +19,16 @@ export default function SignUp() {
   };
 
   const handleRegistrar = async () => {
-    const { usuario, edad, email, password } = formData;
+    const { nombre, email, contraseña } = formData;
 
     // Validaciones básicas
-    if (!usuario.trim() || !edad || !email.trim() || !password.trim()) {
+    if (!nombre.trim() || !email.trim() || !contraseña.trim()) {
       alert("Todos los campos son obligatorios.");
       return;
     }
 
-    if (usuario.length < 3) {
-      alert("El usuario debe tener al menos 3 caracteres.");
-      return;
-    }
-
-    if (isNaN(edad) || edad < 10 || edad > 100) {
-      alert("La edad debe ser un número entre 10 y 100.");
+    if (nombre.length < 3) {
+      alert("El nombre debe tener al menos 3 caracteres.");
       return;
     }
 
@@ -44,20 +38,21 @@ export default function SignUp() {
       return;
     }
 
-    if (password.length < 6) {
+    if (contraseña.length < 6) {
       alert("La contraseña debe tener al menos 6 caracteres.");
       return;
     }
 
-    const response = await fetch("https://tu-backend-en-render.com/signup", {
+    const response = await fetch("https://datarunnersdeploy.onrender.com/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
     });
 
     const data = await response.json();
-    if (data.success) {
-        alert("Usuario registrado correctamente");
+    console.log(data);
+    if (data.ok) {
+        alert("nombre registrado correctamente");
         navigate("/login");
     } else {
         alert(data.error);
@@ -66,10 +61,9 @@ export default function SignUp() {
 
   const handleLimpiar = () => {
     setFormData({
-      usuario: "",
-      edad: "",
+      nombre: "",
       email: "",
-      password: "",
+      contraseña: "",
     });
   };
 
@@ -101,9 +95,9 @@ export default function SignUp() {
 
             <input
                 type="text"
-                name="usuario"
-                placeholder="Usuario"
-                value={formData.usuario}
+                name="nombre"
+                placeholder="Nombre"
+                value={formData.nombre}
                 onChange={handleChange}
                 className="text-white w-full border p-2 mb-4 rounded "
             />
@@ -119,9 +113,9 @@ export default function SignUp() {
 
             <input
                 type="password"
-                name="password"
+                name="contraseña"
                 placeholder="Contraseña"
-                value={formData.password}
+                value={formData.contraseña}
                 onChange={handleChange}
                 className="text-white w-full border p-2 mb-4 rounded "
             />

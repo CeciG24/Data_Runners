@@ -24,12 +24,15 @@ export default function Roles() {
 
     // Aquí harías un fetch al backend Flask para guardar el rol
     try {
-      const res = await fetch("http://url-backend/role", {
+        const res = await fetch("https://datarunnersdeploy.onrender.com/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ roleId: selected }),
       });
 
+      const data = await res.json();
+      console.log(data);
+      
       if (res.ok) {
         navigate("/home"); // manda al usuario a la página principal
       } else {
