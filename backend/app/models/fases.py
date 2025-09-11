@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 from datetime import datetime
 class Fase (db.Model):
     __tablename__='fase'

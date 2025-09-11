@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 from datetime import datetime
 class UsuarioWiki (db.Model):
     __tablename__ = "usuariowiki"

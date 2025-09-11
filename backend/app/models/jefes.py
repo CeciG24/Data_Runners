@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 class Jefe(db.Model):
     __tablename__ = "jefe"
     id_jefe = db.Column(db.Integer, primary_key=True)

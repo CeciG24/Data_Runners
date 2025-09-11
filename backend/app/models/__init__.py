@@ -1,6 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
 
 # Aquí puedes importar tus modelos para que se reconozcan
 from .usuario import Usuario

@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 from datetime import datetime
 class Wiki  (db.Model):
     id_wiki=db.Column(db.Integer, primary_key=True)

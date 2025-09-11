@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 class Respuestas(db.Model):
     __tablename__ = "respuestas"
     id_respuesta = db.Column(db.Integer, primary_key=True)

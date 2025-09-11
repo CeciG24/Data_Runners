@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 class Dificultad (db.Model):
     id_dificultad=db.Column(db.Integer, primary_key=True)
     nombre=db.Column(db.String(100), nullable=False)
