@@ -1,4 +1,4 @@
-# 🏃‍♂️ Data Runners - Juego de SQL
+# Data Runners - Juego de SQL
 
 Bienvenido a **Data Runners**, un juego educativo donde los jugadores deben resolver retos de SQL para avanzar de nivel y derrotar a los jefes.  
 Este repositorio contiene tanto el **backend (Flask + SQLAlchemy)** como el **frontend (React)** en un mismo proyecto.
@@ -15,7 +15,7 @@ Data-Runners/
 Antes de empezar, asegúrate de tener instalado:
 
 - [Python 3.10+](https://www.python.org/downloads/)  
-- [Node.js 18+](https://nodejs.org/) y npm (o yarn)  
+- [Node.js 18+](https://nodejs.org/) y npm  
 - [Git](https://git-scm.com/)  
 
 ## 🚀 Instrucciones de instalación
