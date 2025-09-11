@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthProvider, AuthContext } from "./AuthContext"; // 👈 correcto
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import StartScreen from "./pages/startScreen";
+import StartScreen from "./pages/StartScreen";
 import Roles from "./pages/Roles";
 import Map from "./components/Map"
 import Fase3 from "./pages/Fase3";
