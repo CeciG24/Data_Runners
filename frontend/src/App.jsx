@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Roles from "./pages/Roles";
 import Fase3 from "./pages/Fase3";
+import Fase4 from "./pages/Fase4";
 function App() {
 
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/roles" element={<Roles />} />
         <Route path="/fase3" element={<Fase3 />} />
+        <Route path="/fase4" element={<Fase4 />} />
       </Routes>
     </Router>
   );
