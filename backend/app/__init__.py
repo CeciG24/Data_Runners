@@ -8,7 +8,7 @@ def create_app():
     app = Flask(__name__)
 
     # Configuración de la BD
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:1234@localhost:5432/baseDataRunners"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://datarunnerdb_user:LOJT5XTsQnfI4dYRkrZBIcz1TO1c4nNR@dpg-d30f0sp5pdvs73fujdv0-a.virginia-postgres.render.com:5432/datarunnerdb"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)

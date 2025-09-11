@@ -4,7 +4,7 @@ from ..models.fases import Fase
 
 fases_bp = Blueprint("fases", __name__)
 
-@fases_bp.route('/', methods=['GET'])
+@fases_bp.route('/fases', methods=['GET'])
 def get_fases():
     try:
         fases = Fase.query.all()
