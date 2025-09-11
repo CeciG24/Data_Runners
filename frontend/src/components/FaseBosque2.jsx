@@ -7,6 +7,7 @@ const FaseBosque2 = () => {
   const [nivel, setNivel] = useState(null); // Datos del nivel
   const [query, setQuery] = useState(""); // Consulta escrita
   const [feedback, setFeedback] = useState(""); // Respuesta del backend
+  const [consejo, setConsejo] = useState(""); // 🔹 consejo mostrado
 
   // 🔹 Cargar nivel 2 al montar
   useEffect(() => {
@@ -45,6 +46,11 @@ const FaseBosque2 = () => {
     }, 6000);
   };
 
+  // 🔹 Consejo hardcodeado para el nivel 1
+  const handleConsejo = () => {
+    setConsejo("💡 La tabla que contiene a los líderes se llama tlatoanis. Necesitas mostrar solamente al tlatoani cuyo reinado comenzó en 1519.Necesitas usar SELECT y WHERE");
+  };
+  
   return (
     <div className="fase-bosque">
       {/* Columna izquierda - Tigre */}
@@ -83,7 +89,7 @@ const FaseBosque2 = () => {
         <div className="fase-botones">
           <button onClick={handleConsultar}>Consultar</button>
           <button>Habilidad</button>
-          <button>Consejo</button>
+          <button onClick={handleConsejo}>Consejo</button>
           <button onClick={handleRendirse}>Rendirse</button>
         </div>
 
@@ -91,6 +97,12 @@ const FaseBosque2 = () => {
         {feedback && (
           <div className="fase-feedback">
             <p>{feedback}</p>
+          </div>
+        )}
+        {/* Consejo mostrado */}
+        {consejo && (
+          <div className="fase-consejo">
+            <p>{consejo}</p>
           </div>
         )}
 

@@ -4,15 +4,15 @@ import tigreImg from "../assets/leopardo.png";
 
 const FaseBosque = () => {
   const [showModal, setShowModal] = useState(false);
-  const [nivel, setNivel] = useState(null); // guardar datos del nivel
-  const [query, setQuery] = useState(""); // consulta escrita por usuario
-  const [feedback, setFeedback] = useState(""); // respuesta del backend
+  const [nivel, setNivel] = useState(null);
+  const [query, setQuery] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [consejo, setConsejo] = useState(""); // 🔹 consejo mostrado
 
-  // 🔹 Cargar nivel al montar componente
   useEffect(() => {
     const fetchNivel = async () => {
       try {
-        const res = await fetch("https://datarunnersdeploy.onrender.com/niveles/1"); // cambia el ID según corresponda
+        const res = await fetch("https://datarunnersdeploy.onrender.com/niveles/1");
         const data = await res.json();
         setNivel(data.nivel);
       } catch (err) {
@@ -23,7 +23,6 @@ const FaseBosque = () => {
     fetchNivel();
   }, []);
 
-  // 🔹 Enviar consulta a backend
   const handleConsultar = async () => {
     try {
       const res = await fetch("https://datarunnersdeploy.onrender.com/niveles/1/resolver", {
@@ -47,6 +46,11 @@ const FaseBosque = () => {
     setTimeout(() => {
       window.location.href = "/map";
     }, 6000);
+  };
+
+  // 🔹 Consejo hardcodeado para el nivel 1
+  const handleConsejo = () => {
+    setConsejo("💡 Consejo: Para este nivel necesitas listar solo el nombre de los guerreros. La consulta es SELECT, el campo es nombre y la tabla es guerreros;");
   };
 
   return (
@@ -86,8 +90,8 @@ const FaseBosque = () => {
         {/* Botones */}
         <div className="fase-botones">
           <button onClick={handleConsultar}>Consultar</button>
-          <button>Habilidad</button>
-          <button>Consejo</button>
+          <button onClick={() => alert("⚡ Habilidad no implementada aún")}>Habilidad</button>
+          <button onClick={handleConsejo}>Consejo</button>
           <button onClick={handleRendirse}>Rendirse</button>
         </div>
 
@@ -95,6 +99,13 @@ const FaseBosque = () => {
         {feedback && (
           <div className="fase-feedback">
             <p>{feedback}</p>
+          </div>
+        )}
+
+        {/* Consejo mostrado */}
+        {consejo && (
+          <div className="fase-consejo">
+            <p>{consejo}</p>
           </div>
         )}
 
