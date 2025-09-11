@@ -1,24 +1,40 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import StartScreen from "./pages/startScreen";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthProvider, AuthContext } from "./AuthContext"; // 👈 correcto
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import StartScreen from "./pages/startScreen";
 import Roles from "./pages/Roles";
+import Map from "./components/Map"
 import Fase3 from "./pages/Fase3";
 import Fase4 from "./pages/Fase4";
-function App() {
+
+function AppRoutes() {
+  const { user } = useContext(AuthContext);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<StartScreen />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/roles" element={<Roles />} />
-        <Route path="/fase3" element={<Fase3 />} />
-        <Route path="/fase4" element={<Fase4 />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<StartScreen />} />
+
+      <Route path="/login" element={!user ? <Login /> : <Navigate to="/map" />} />
+      <Route path="/signup" element={!user ? <SignUp /> : <Navigate to="/map" />} />
+      <Route path="/map" element={<Map />} />
+      <Route path="/roles" element={<Roles />} />
+
+      <Route path="*" element={<Navigate to={user ? "/map" : "/login"} />} />
+    </Routes>
+
+      // <Route path="/map" element={user ? <Map /> : <Navigate to="/login" />} />
+
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}

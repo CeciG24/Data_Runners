@@ -1,0 +1,171 @@
+.fase-bosque {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color: #0f0;
+  font-family: monospace;
+
+  /* Fondo con animación */
+  background: url("../assets/fondo_bosque.png"); /* Pon tu imagen */
+  background-size: cover;
+  background-position: center;
+  animation: movimientoFondo 20s linear infinite;
+}
+
+/* Animación del fondo */
+@keyframes movimientoFondo {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -500px 500px;
+  }
+}
+
+/* Columna izquierda */
+.fase-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leopardo {
+  width: 250px;
+  height: auto;
+}
+
+/* Columna derecha */
+.fase-right {
+  flex: 2;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-left: 2px solid #0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Header */
+.fase-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  background: #011;
+  padding: 5px 10px;
+  border: 2px solid #0f0;
+}
+
+/* Nivel y tiempo */
+.fase-nivel {
+  display: flex;
+  justify-content: space-between;
+  background: #011;
+  padding: 5px 10px;
+  border: 2px solid #0f0;
+}
+
+/* Instrucciones */
+.fase-instrucciones {
+  background: #011;
+  border: 2px solid #0f0;
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* Query */
+.fase-query {
+  width: 100%;
+  height: 100px;
+  background: #000;
+  color: #0f0;
+  border: 2px solid #0f0;
+  padding: 10px;
+  font-size: 14px;
+  resize: none;
+}
+
+/* Botones */
+.fase-botones {
+  display: flex;
+  gap: 10px;
+}
+
+.fase-botones button {
+  flex: 1;
+  background: #022;
+  color: #0f0;
+  border: 2px solid #0f0;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.fase-botones button:hover {
+  background: #044;
+}
+
+/* Tabla */
+.fase-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: #000;
+  border: 2px solid #0f0;
+}
+
+.fase-tabla th,
+.fase-tabla td {
+  border: 1px solid #0f0;
+  padding: 6px;
+  text-align: center;
+}
+
+.modal-azteca {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #004d40, #1a237e);
+  color: #ffcc00;
+  padding: 2rem;
+  border: 4px solid #c0a060;
+  border-radius: 15px;
+  text-align: center;
+  font-family: "Papyrus", "Trebuchet MS", sans-serif;
+  box-shadow: 0 0 20px #ffcc00, 0 0 40px #00897b;
+  animation: zoomIn 0.6s ease;
+}
+
+.modal-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px black;
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import background from "/background/fondo_inicio.png"
 
-
 const roles = [
   { id: 1, name: "Guerrero", img: "/roles/Guerrero.png" },
   { id: 2, name: "Guerrero_Lobo", img: "/roles/Guerrero2.png" },
@@ -22,25 +21,26 @@ export default function Roles() {
   const handleConfirm = async () => {
     if (!selected) return alert("Selecciona un rol antes de continuar");
 
-    // Aquí harías un fetch al backend Flask para guardar el rol
-    try {
-        const res = await fetch("https://datarunnersdeploy.onrender.com/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ roleId: selected }),
-      });
+    navigate("/map");
+    // PARA CONECTAR BASE DE DATOS (LISTO)
+    // try {
+    //     const res = await fetch("https://datarunnersdeploy.onrender.com/auth/register", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ roleId: selected }),
+    //   });
 
-      const data = await res.json();
-      console.log(data);
+    //   const data = await res.json();
+    //   console.log(data);
       
-      if (res.ok) {
-        navigate("/home"); // manda al usuario a la página principal
-      } else {
-        alert("Error al guardar el rol");
-      }
-    } catch (err) {
-      console.error(err);
-    }
+    //   if (res.ok) {
+    //     navigate("/home"); // manda al usuario a la página principal
+    //   } else {
+    //     alert("Error al guardar el rol");
+    //   }
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
   return (
