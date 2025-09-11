@@ -1,0 +1,12 @@
+.map-container {
+  width: 100vw;          /* Ancho de la ventana */
+  height: 100vh;         /* Alto de la ventana */
+  background-image: url('../assets/fondo_pixelado.png');
+  background-size: cover;      /* Ajusta la imagen al tamaño de la pantalla */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat;
+  position: relative;     /* Para poder posicionar elementos hijos sobre el fondo */
+  overflow: hidden;       /* Evita scroll si se agregan elementos fuera del contenedor */
+  zIndex: -1;
+
+}

@@ -1,0 +1,56 @@
+.mapa-bosque {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  /* Fondo ajustable a cualquier pantalla */
+  background-size: cover;       /* ocupa todo el contenedor */
+  background-position: center;  /* centra la imagen */
+  background-repeat: no-repeat; /* no repite la imagen */
+}
+
+/* Botones */
+.buttons-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10; /* encima del fondo */
+}
+
+.transparent-button {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  padding: 0;
+  border-radius: 8px;
+}
+
+.transparent-button:hover {
+  background-color: rgba(42, 106, 37, 0.5);
+}
+
+.transparent-button.selected {
+  background-color: rgba(23, 114, 61, 0.2);
+}
+
+/* Indicador */
+.selection-indicator {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgb(42, 147, 49);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 20; /* encima de todo */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
