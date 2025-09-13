@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
 import Modal from "../components/Modal";
 import background from "/background/fondo_inicio.png";
 import buho from "/buho-robot.png";
 import leopardo from "/leopardo.png";
 
 export default function Login() {
-  const [usuario, setUsuario] = useState("");
+  const { login } = useContext(AuthContext);
+  const [usuario] = useState("");
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [modalMessage, setModalMessage] = useState(null); // Contenido de los Modal
   const [loading, setLoading] = useState(false); // Comprueba mensaje de carga (sin botón de Cerrar)
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const handleIngresar = async () => {
     // Mostrar mensaje de carga
@@ -42,11 +48,15 @@ export default function Login() {
 
       const data = await response.json();
       console.log(data);
-
-      localStorage.setItem("token", data.usuario.token);
+      
       if (response.ok) {
+        localStorage.setItem("token", data.usuario.token);
+        localStorage.setItem("rol", data.usuario.id_rol);
         setLoading(false);
         setModalMessage(data.message);
+        login(data.usuario.nombre);
+
+        // Redirige según si tiene rol o no
         if(data.usuario.id_rol !== null)
           setTimeout(() => navigate("/map"), 1500);
         else 
@@ -55,7 +65,9 @@ export default function Login() {
         setModalMessage(data.error || "Error desconocido");
       }
     } catch (error) {
-      setModalMessage("Error de conexión con el servidor");
+      setModalMessage(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 

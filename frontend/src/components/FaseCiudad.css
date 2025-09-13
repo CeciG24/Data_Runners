@@ -1,27 +1,23 @@
-.fase-bosque {
+/* FaseDistrito.css */
+.fase-ciudad {
   display: flex;
   flex-direction: row;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  color: #0f0;
+  color: #0ff; /* color principal azul */
   font-family: monospace;
 
-  /* Fondo con animación */
-  background: url("../assets/fondo_bosque.png"); /* Pon tu imagen */
+  /* Fondo animado */
+  background: url("../assets/fondo_fase4.png"); /* tu imagen del distrito */
   background-size: cover;
   background-position: center;
   animation: movimientoFondo 20s linear infinite;
 }
 
-/* Animación del fondo */
 @keyframes movimientoFondo {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: -500px 500px;
-  }
+  from { background-position: 0 0; }
+  to { background-position: -500px 500px; }
 }
 
 /* Columna izquierda */
@@ -32,7 +28,7 @@
   align-items: center;
 }
 
-.leopardo {
+.tigre-sql {
   width: 250px;
   height: auto;
 }
@@ -41,8 +37,8 @@
 .fase-right {
   flex: 2;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  border-left: 2px solid #0f0;
+  background: rgba(0, 0, 50, 0.6); /* azul oscuro translúcido */
+  border-left: 2px solid #0ff;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -53,24 +49,24 @@
   display: flex;
   justify-content: space-between;
   font-size: 16px;
-  background: #011;
+  background: #001030;
   padding: 5px 10px;
-  border: 2px solid #0f0;
+  border: 2px solid #0ff;
 }
 
 /* Nivel y tiempo */
 .fase-nivel {
   display: flex;
   justify-content: space-between;
-  background: #011;
+  background: #001030;
   padding: 5px 10px;
-  border: 2px solid #0f0;
+  border: 2px solid #0ff;
 }
 
 /* Instrucciones */
 .fase-instrucciones {
-  background: #011;
-  border: 2px solid #0f0;
+  background: #001030;
+  border: 2px solid #0ff;
   padding: 10px;
   font-size: 14px;
 }
@@ -79,9 +75,9 @@
 .fase-query {
   width: 100%;
   height: 100px;
-  background: #000;
-  color: #0f0;
-  border: 2px solid #0f0;
+  background: #000033;
+  color: #0ff;
+  border: 2px solid #0ff;
   padding: 10px;
   font-size: 14px;
   resize: none;
@@ -95,40 +91,41 @@
 
 .fase-botones button {
   flex: 1;
-  background: #022;
-  color: #0f0;
-  border: 2px solid #0f0;
+  background: #002266;
+  color: #0ff;
+  border: 2px solid #0ff;
   padding: 8px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .fase-botones button:hover {
-  background: #044;
+  background: #0044aa;
 }
 
 /* Tabla */
 .fase-tabla {
   width: 100%;
   border-collapse: collapse;
-  background: #000;
-  border: 2px solid #0f0;
+  background: #000044;
+  border: 2px solid #0ff;
 }
 
 .fase-tabla th,
 .fase-tabla td {
-  border: 1px solid #0f0;
+  border: 1px solid #0ff;
   padding: 6px;
   text-align: center;
 }
 
+/* Modal */
 .modal-azteca {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(10, 10, 50, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,14 +133,14 @@
 }
 
 .modal-content {
-  background: linear-gradient(135deg, #004d40, #1a237e);
-  color: #ffcc00;
+  background: linear-gradient(135deg, #004d99, #1a237e);
+  color: #00ffff;
   padding: 2rem;
-  border: 4px solid #c0a060;
+  border: 4px solid #3399ff;
   border-radius: 15px;
   text-align: center;
   font-family: "Papyrus", "Trebuchet MS", sans-serif;
-  box-shadow: 0 0 20px #ffcc00, 0 0 40px #00897b;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #0088cc;
   animation: zoomIn 0.6s ease;
 }
 
@@ -159,13 +156,46 @@
 }
 
 @keyframes zoomIn {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+/* WikiBosque.css o FaseDistrito.css */
+.modal-azteca {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: #0ff;
+  font-family: "Arial", sans-serif;
+  border: 2px solid #00ffff;
+}
+
+.boton-volver {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #00ffff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.boton-volver:hover {
+  background: #0ff;
 }
 

@@ -48,7 +48,7 @@ const FaseBosque3 = ({ setFase }) => {
     setShowModal(true);
     setTimeout(() => {
       setFase("mapa");
-    }, 5000);
+    }, 6000);
   };
 
   return (

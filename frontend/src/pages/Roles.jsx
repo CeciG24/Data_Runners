@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import background from "/background/fondo_inicio.png";
 import Modal from "../components/Modal";
@@ -16,17 +16,23 @@ export default function Roles() {
   const [modalMessage, setModalMessage] = useState(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+      const rolGuardado = localStorage.getItem("rol");
+      // Redirige automáticamente al mapa si ya seleccionó rol
+      if (rolGuardado)
+        navigate("/map");
+    }, []);
+
   const handleConfirm = async() => {
 
     if (!selected)
       setModalMessage("Selecciona un rol");
     else {
-      console.log(selected);
 
-    const token = localStorage.getItem("token"); // 🔑 recupera el token guardado
+    const token = localStorage.getItem("token");
     if (!token) {
-      setModalMessage("No se encontró sesión activa. Inicia sesión de nuevo.");
-      return;
+      setModalMessage("Primero inicia sesión...");
+      return setTimeout(() => navigate("/login"), 2500);
     }
 
       try {
@@ -41,7 +47,8 @@ export default function Roles() {
           console.log(data);
 
           if (response.ok) {
-            setModalMessage(`Bienvenido ${roles[selected].name}`);
+            setModalMessage(`Bienvenido ${roles[selected-1].name}`);
+            localStorage.setItem("rolSeleccionado", selected);
             setTimeout(() => navigate("/map"), 3000); // navega después de un tiempo corto
           } else {
             setModalMessage(data.error || "Error desconocido");
