@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./FaseBosque.css"; // puedes renombrar a FaseNivel.css para más claridad
 
- const FaseNivel = ({ nivelId, img, fondo, consejoTexto, tablaEjemplo }) => {
+ const NivelPlantilla = ({ nivelId, img, background, consejoTexto, tablaEjemplo }) => {
   const [showModal, setShowModal] = useState(false);
   const [nivel, setNivel] = useState(null);
   const [query, setQuery] = useState("");
@@ -143,4 +143,4 @@ import "./FaseBosque.css"; // puedes renombrar a FaseNivel.css para más clarida
   );
 };
 
-export default FaseNivel;
+export default NivelPlantilla;

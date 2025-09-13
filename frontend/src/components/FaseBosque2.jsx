@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./FaseBosque.css";
 import tigreImg from "../assets/leopardo.png";
+import fondoBosque from "../assets/fondo_bosque.png";
+import { useNavigate } from "react-router-dom";
+
 
 const FaseBosque2 = () => {
   const [showModal, setShowModal] = useState(false);
@@ -8,6 +11,7 @@ const FaseBosque2 = () => {
   const [query, setQuery] = useState(""); // Consulta escrita
   const [feedback, setFeedback] = useState(""); // Respuesta del backend
   const [consejo, setConsejo] = useState(""); // 🔹 consejo mostrado
+  const navigate=useNavigate();
 
   // 🔹 Cargar nivel 2 al montar
   useEffect(() => {
@@ -42,7 +46,7 @@ const FaseBosque2 = () => {
   const handleRendirse = () => {
     setShowModal(true);
     setTimeout(() => {
-      window.location.href = "/map";
+      navigate("/map");
     }, 6000);
   };
 
@@ -52,7 +56,11 @@ const FaseBosque2 = () => {
   };
   
   return (
-    <div className="fase-bosque">
+    <div className="fase-bosque"
+          style={{
+                  backgroundImage: `url(${fondoBosque})`
+                }}
+                  >
       {/* Columna izquierda - Tigre */}
       <div className="fase-left">
         <img src={tigreImg} alt="Tigre SQL" className="tigre-sql" />
