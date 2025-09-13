@@ -4,6 +4,7 @@ from .. import db
 from ..models.niveles import Nivel
 from ..models.respuestas import Respuestas
 from ..models.progreso import Progreso
+from ..models.tablasEjemplo import TablasEjemplo
 
 niveles_bp = Blueprint("niveles", __name__,url_prefix="/niveles")
 
@@ -35,6 +36,21 @@ def get_nivel_by_id(id):
     except Exception as e:
         return jsonify({"error": f"Error al obtener nivel: {str(e)}"}), 500
     
+@niveles_bp.route('/tabla/<int:id>', methods=['GET'])
+def get_tabla_by_id_nivel(id):
+    try:
+        tabla = TablasEjemplo.query.filter_by(id_nivel=id).first()
+        return jsonify({
+            "tabla": {
+                "id_nivel": tabla.id_tabla,
+                "nombre": tabla.nombre_tabla,
+                "esquema": tabla.esquema,
+                "datos": tabla.datos,
+            } 
+        }), 200
+    except Exception as e:
+        return jsonify({"error": f"Error al obtener tabla: {str(e)}"}), 500
+    
 @niveles_bp.route('/<int:id>/resolver', methods=['POST'])
 def resolver_nivel(id):
     try:
@@ -48,14 +64,17 @@ def resolver_nivel(id):
 
         if respuesta and (respuesta.sql_correcta == query_usuario):
             feedback = respuesta.feedback
+            salida = respuesta.salida_esperada
         else:
             feedback = "La consulta no es correcta, intenta de nuevo"
-        
+            salida = " "
+
         return jsonify({
             "success": True,
             "nivel":id,
             "query": query_usuario,
             "feedback": feedback,
+            "salida_esperada": salida,
             "message": "Solucion enviada exitosamente",
         }), 200
         
