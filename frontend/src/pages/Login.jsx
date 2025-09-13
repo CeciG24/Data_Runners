@@ -54,13 +54,14 @@ export default function Login() {
         localStorage.setItem("rol", data.usuario.id_rol);
         setLoading(false);
         setModalMessage(data.message);
-        login(data.usuario.nombre);
 
         // Redirige según si tiene rol o no
-        if(data.usuario.id_rol !== null)
-          setTimeout(() => navigate("/map"), 1500);
-        else 
+        if(data.usuario.id_rol === null){
           setTimeout(() => navigate("/roles"), 1500);
+        }
+        else {
+          setTimeout(() => navigate("/map"), 1500);
+        }
       } else {
         setModalMessage(data.error || "Error desconocido");
       }

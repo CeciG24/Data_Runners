@@ -16,12 +16,13 @@ export default function Roles() {
   const [modalMessage, setModalMessage] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-      const rolGuardado = localStorage.getItem("rol");
-      // Redirige automáticamente al mapa si ya seleccionó rol
-      if (rolGuardado)
-        navigate("/map");
-    }, []);
+  // useEffect(() => {
+  //     const rolGuardado = localStorage.getItem("rol");
+  //     // Redirige automáticamente al mapa si ya seleccionó rol
+  //     console.log(rolGuardado);
+  //     if (rolGuardado!==null)
+  //       navigate("/map");
+  //   }, []);
 
   const handleConfirm = async() => {
 
@@ -48,7 +49,7 @@ export default function Roles() {
 
           if (response.ok) {
             setModalMessage(`Bienvenido ${roles[selected-1].name}`);
-            localStorage.setItem("rolSeleccionado", selected);
+            localStorage.setItem("rol", selected);
             setTimeout(() => navigate("/map"), 3000); // navega después de un tiempo corto
           } else {
             setModalMessage(data.error || "Error desconocido");

@@ -17,9 +17,9 @@ function AppRoutes() {
       <Route path="/login" element={<Login /> } />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/map" element={<Map />} />
-      <Route path="/roles" element={user ? <Roles /> : <Navigate to="/login" replace />} />
+      <Route path="/roles" element={<Roles />} />
       {/* <Route path="/nivel/:id" element={<NivelPage />} /> */}
-      <Route path="*" element={<Navigate to={user ? "/map" : "/login"} />} />
+      {/* <Route path="*" element={<Navigate to={user ? "/map" : "/login"} />} /> */}
     </Routes>
 
   );
