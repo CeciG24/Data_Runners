@@ -177,4 +177,4 @@ const FaseDistrito2 = ({ setFase }) => {
     );
   };
 
-export default FaseBosque;
+export default FaseDistrito2;

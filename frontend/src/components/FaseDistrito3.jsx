@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./FaseDistrito.css";
 import tigreImg from "../assets/leopardo.png";
 
-const FaseDistrito = ({ setFase }) => {
+const FaseDistrito3 = ({ setFase }) => {
   const [showModal, setShowModal] = useState(false);
   const [tabla, setTabla] = useState(null);
   const [query, setQuery] = useState("");
