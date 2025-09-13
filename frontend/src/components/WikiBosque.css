@@ -115,6 +115,15 @@
   animation: aparecer 0.5s ease-in-out;
 }
 
+.wiki-dialogo {
+  max-height: 500px;
+  /* Ajusta la altura según tu diseño */
+  overflow-y: auto;
+  /* Scroll vertical */
+  padding-right: 10px;
+  /* Para que el scroll no tape contenido */
+}
+
 @keyframes aparecer {
   0% { opacity: 0; transform: translateY(10px); }
   100% { opacity: 1; transform: translateY(0); }
