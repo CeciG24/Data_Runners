@@ -20,7 +20,7 @@ function AppRoutes() {
       <Route path="/signup" element={!user ? <SignUp /> : <Navigate to="/map" />} />
       <Route path="/map" element={<Map />} />
       <Route path="/roles" element={<Roles />} />
-
+      {/* <Route path="/nivel/:id" element={<NivelPage />} /> */}
       <Route path="*" element={<Navigate to={user ? "/map" : "/login"} />} />
     </Routes>
 

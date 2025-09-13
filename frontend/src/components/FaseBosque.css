@@ -8,7 +8,6 @@
   font-family: monospace;
 
   /* Fondo con animación */
-  background: url("../assets/fondo_bosque.png"); /* Pon tu imagen */
   background-size: cover;
   background-position: center;
   animation: movimientoFondo 20s linear infinite;

@@ -130,7 +130,7 @@ export default function SignUp() {
                   Registrar
               </button>
             </div>
-            <div className="flex w-full text-white justify-start space-x-1">
+            <div className="flex w-full text-white justify-center space-x-1">
                 <Link to="/login" className="text-purple-400 hover:text-purple-600 inline">
                   Iniciar sesión
                 </Link>
