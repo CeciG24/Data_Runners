@@ -4,7 +4,7 @@ import tigreImg from "../assets/leopardo.png";
 import fondoBosque from "../assets/fondo_bosque.png";
 import { useNavigate } from "react-router-dom";
 
-const FaseBosque = () => {
+const FaseBosque = ({ setFase }) => {
   const [showModal, setShowModal] = useState(false);
   const [nivel, setNivel] = useState(null);
   const [query, setQuery] = useState("");
@@ -46,8 +46,8 @@ const FaseBosque = () => {
   const handleRendirse = () => {
     setShowModal(true);
     setTimeout(() => {
-      navigate("/map");
-    }, 6000);
+      setFase("mapa");
+    }, 5000);
   };
 
   // 🔹 Consejo hardcodeado para el nivel 1

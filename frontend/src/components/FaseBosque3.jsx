@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./FaseBosque.css";
 import tigreImg from "../assets/leopardo.png";
 
-const FaseBosque3 = () => {
+const FaseBosque3 = ({ setFase }) => {
   const [showModal, setShowModal] = useState(false);
   const [nivel, setNivel] = useState(null); // Datos del nivel
   const [query, setQuery] = useState(""); // Consulta escrita
@@ -47,8 +47,8 @@ const FaseBosque3 = () => {
   const handleRendirse = () => {
     setShowModal(true);
     setTimeout(() => {
-      window.location.href = "/map";
-    }, 6000);
+      setFase("mapa");
+    }, 5000);
   };
 
   return (

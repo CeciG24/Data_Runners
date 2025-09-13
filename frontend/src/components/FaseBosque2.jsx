@@ -5,7 +5,7 @@ import fondoBosque from "../assets/fondo_bosque.png";
 import { useNavigate } from "react-router-dom";
 
 
-const FaseBosque2 = () => {
+const FaseBosque2 = ({ setFase }) => {
   const [showModal, setShowModal] = useState(false);
   const [nivel, setNivel] = useState(null); // Datos del nivel
   const [query, setQuery] = useState(""); // Consulta escrita
@@ -46,8 +46,8 @@ const FaseBosque2 = () => {
   const handleRendirse = () => {
     setShowModal(true);
     setTimeout(() => {
-      navigate("/map");
-    }, 6000);
+      setFase("mapa");
+    }, 5000);
   };
 
   // 🔹 Consejo hardcodeado para el nivel 1

@@ -67,9 +67,9 @@ function Map() {
   // Renderizar la fase seleccionada
   if (fase === "mapaBosque") return <MapaBosque setFase={setFase} />;
   if (fase === "mapaDistrito") return <MapaDistritos setFase={setFase} />;
-  if (fase === "faseBosque") return <FaseBosque />; // Nivel 1
-  if (fase === "faseBosque2") return <FaseBosque2 />; // Nivel 2
-  if (fase === "faseBosque3") return <FaseBosque3 />; // Nivel 3
+  if (fase === "faseBosque") return <FaseBosque setFase={setFase} />; // Nivel 1
+  if (fase === "faseBosque2") return <FaseBosque2 setFase={setFase}/>; // Nivel 2
+  if (fase === "faseBosque3") return <FaseBosque3 setFase={setFase}/>; // Nivel 3
   if (fase === "distrito1") return <FaseDistrito1 />
   if (fase === "distrito") return <DistritoDatos />;
   if (fase === "mercado") return <MercadoMemoria />;
