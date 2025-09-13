@@ -23,10 +23,17 @@ export default function Roles() {
     else {
       console.log(selected);
 
+    const token = localStorage.getItem("token"); // 🔑 recupera el token guardado
+    if (!token) {
+      setModalMessage("No se encontró sesión activa. Inicia sesión de nuevo.");
+      return;
+    }
+
       try {
           const response = await fetch("https://datarunnersdeploy.onrender.com/users/rol", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Authorization": "Bearer " + token,
+                      "Content-Type": "application/json" },
             body: JSON.stringify({ id_rol: selected }),
           });
 
@@ -34,8 +41,8 @@ export default function Roles() {
           console.log(data);
 
           if (response.ok) {
-            setModalMessage(data.message);
-            setTimeout(() => navigate("/map"), 1500); // navega después de un tiempo corto
+            setModalMessage(`Bienvenido ${roles[selected].name}`);
+            setTimeout(() => navigate("/map"), 3000); // navega después de un tiempo corto
           } else {
             setModalMessage(data.error || "Error desconocido");
           }

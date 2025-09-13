@@ -10,15 +10,16 @@ export default function Login() {
   const [usuario, setUsuario] = useState("");
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
-  const [modalMessage, setModalMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [modalMessage, setModalMessage] = useState(null); // Contenido de los Modal
+  const [loading, setLoading] = useState(false); // Comprueba mensaje de carga (sin botón de Cerrar)
   const navigate = useNavigate();
 
   const handleIngresar = async () => {
-    // Mostrar mensaje de cargando
+    // Mostrar mensaje de carga
     setLoading(true);
     setModalMessage("Comprobando...");
 
+    // Comprobaciones básicas de Email y Contraseña
     if (!email.trim() || !contraseña.trim()) {
       setLoading(false);
       setModalMessage("Llena todos los campos");
@@ -31,6 +32,7 @@ export default function Login() {
       return;
     }
 
+    // Se mandan los datos al backend
     try {
       const response = await fetch("https://datarunnersdeploy.onrender.com/auth/login", {
         method: "POST",
@@ -41,16 +43,19 @@ export default function Login() {
       const data = await response.json();
       console.log(data);
 
+      localStorage.setItem("token", data.usuario.token);
       if (response.ok) {
+        setLoading(false);
         setModalMessage(data.message);
-        setTimeout(() => navigate("/roles"), 1500); // navega después de un tiempo corto
+        if(data.usuario.id_rol !== null)
+          setTimeout(() => navigate("/map"), 1500);
+        else 
+          setTimeout(() => navigate("/roles"), 1500);
       } else {
         setModalMessage(data.error || "Error desconocido");
       }
     } catch (error) {
       setModalMessage("Error de conexión con el servidor");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -58,7 +63,8 @@ export default function Login() {
     <div
       className="flex flex-col h-screen w-screen justify-center items-center"
       style={{ backgroundImage: `url(${background})` }}
-    >
+    > 
+        {/* Mensaje emergente para avisos */}
         <Modal 
           isOpen={modalMessage}
           onClose={() => setModalMessage(null)}
