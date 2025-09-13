@@ -1,5 +1,5 @@
 /* FaseDistrito.css */
-.fase-distrito {
+.fase-ciudad {
   display: flex;
   flex-direction: row;
   width: 100vw;
@@ -9,7 +9,7 @@
   font-family: monospace;
 
   /* Fondo animado */
-  background: url("../assets/fondo_distrito.png"); /* tu imagen del distrito */
+  background: url("../assets/fondo_fase4.png"); /* tu imagen del distrito */
   background-size: cover;
   background-position: center;
   animation: movimientoFondo 20s linear infinite;

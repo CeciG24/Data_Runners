@@ -1,78 +1,110 @@
-// src/pages/Roles.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "/background/fondo_inicio.png"
+import background from "/background/fondo_inicio.png";
+import Modal from "../components/Modal";
 
 const roles = [
-  { id: 1, name: "Guerrero", img: "/roles/Guerrero.png" },
-  { id: 2, name: "Guerrero_Lobo", img: "/roles/Guerrero2.png" },
-  { id: 3, name: "Comerciante", img: "/roles/Comerciante.png" },
-  { id: 4, name: "Sacerdote", img: "/roles/Sacerdote.png" },
+  { id: 1, name: "Itzcóatl", img: "/roles/Itzcóatl.png" },
+  { id: 2, name: "Cuauhtli", img: "/roles/Cuauhtli.png" },
+  { id: 3, name: "Xólotl", img: "/roles/Xólotl.png" },
+  { id: 4, name: "Tecuaní", img: "/roles/Tecuaní.png" },
 ];
 
 export default function Roles() {
   const [selected, setSelected] = useState(null);
+  const [hovered, setHovered] = useState(null);
+  const [modalMessage, setModalMessage] = useState(null);
   const navigate = useNavigate();
 
-  const handleSelect = (roleId) => {
-    setSelected(roleId);
-  };
+  useEffect(() => {
+      const rolGuardado = localStorage.getItem("rol");
+      // Redirige automáticamente al mapa si ya seleccionó rol
+      if (rolGuardado)
+        navigate("/map");
+    }, []);
 
-  const handleConfirm = async () => {
-    if (!selected) return alert("Selecciona un rol antes de continuar");
+  const handleConfirm = async() => {
 
-    navigate("/map");
-    // PARA CONECTAR BASE DE DATOS (LISTO)
-    // try {
-    //     const res = await fetch("https://datarunnersdeploy.onrender.com/auth/register", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ roleId: selected }),
-    //   });
+    if (!selected)
+      setModalMessage("Selecciona un rol");
+    else {
 
-    //   const data = await res.json();
-    //   console.log(data);
-      
-    //   if (res.ok) {
-    //     navigate("/home"); // manda al usuario a la página principal
-    //   } else {
-    //     alert("Error al guardar el rol");
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setModalMessage("Primero inicia sesión...");
+      return setTimeout(() => navigate("/login"), 2500);
+    }
+
+      try {
+          const response = await fetch("https://datarunnersdeploy.onrender.com/users/rol", {
+            method: "POST",
+            headers: { "Authorization": "Bearer " + token,
+                      "Content-Type": "application/json" },
+            body: JSON.stringify({ id_rol: selected }),
+          });
+
+          const data = await response.json();
+          console.log(data);
+
+          if (response.ok) {
+            setModalMessage(`Bienvenido ${roles[selected-1].name}`);
+            localStorage.setItem("rolSeleccionado", selected);
+            setTimeout(() => navigate("/map"), 3000); // navega después de un tiempo corto
+          } else {
+            setModalMessage(data.error || "Error desconocido");
+          }
+        } catch (error) {
+          setModalMessage("Error de conexión con el servidor");
+        }
+    }
+
   };
 
   return (
     <div 
-        className="h-screen w-screen flex flex-col justify-center items-center bg-cover bg-center"
-        style={{ backgroundImage: `url(${background})` }}
+      className="h-screen w-screen flex flex-col justify-center items-center bg-cover bg-center"
+      style={{ backgroundImage: `url(${background})` }}
     >
+      <Modal 
+        isOpen={modalMessage}
+        onClose={() => setModalMessage(null)}
+        modalMessage={modalMessage}
+        loading={false}
+      />
       <h1 className="text-6xl text-gray-400 font-bold mb-15">Elige a tu personaje</h1>
+      
       <div className="grid grid-cols-2 gap-30">
-        {roles.map((role) => (
-          <div
-            key={role.id}
-            className="relative cursor-pointer"
-            onClick={() => handleSelect(role.id)}
-            onMouseEnter={() => setSelected(role.id)}
-          >
-            {/* Imagen del rol */}
-            <img
-              src={role.img}
-              alt={role.name}
-              className={`w-40 h-40 rounded-lg shadow-lg transform scale-150 transition-transform mb-5${
-                selected === role.id ? "scale-105 border-4 border-purple-700" : ""
-              }`}
-            />
-            {/* Flecha encima*/}
-            {selected === role.id && (
-              <div className="absolute -top-18  left-1/2 transform -translate-x-1/2">
-                <span className="text-4xl">⬇</span>
-              </div>
-            )}
-          </div>
-        ))}
+        {roles.map((role) => {
+
+          return (
+            <div
+              key={role.id}
+              className="relative cursor-pointer"
+              onClick={() => setSelected(role.id)}
+              onMouseEnter={() => setHovered(role.id)}
+              onMouseLeave={() => setHovered(null)}
+            >
+
+
+              {/* Imagen del rol */}
+              <img
+                src={role.img}
+                alt={role.name}
+                className={`w-40 h-40 rounded-lg shadow-lg transform scale-120 transition-transform mb-5 ${
+                  selected === role.id ? "scale-150 border-4 border-purple-700" : ""} 
+                  ${ hovered === role.id ? "border-4 border-purple-700" : ""
+                }`}
+              />
+
+              {/* Flecha encima si está seleccionado */}
+              {selected === role.id && (
+                <div className="absolute -top-18 left-1/2 transform -translate-x-1/2">
+                  <span className="text-4xl">⬇</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <button

@@ -16,8 +16,19 @@ import FaseBosque from "./FaseBosque.jsx";
 import FaseBosque2 from "./FaseBosque2.jsx";
 import FaseBosque3 from "./FaseBosque3.jsx";
 import FaseDistrito1 from "./FaseDistrito1.jsx";
+import FaseDistrito2 from "./FaseDistrito2.jsx";
+import FaseDistrito3 from "./FaseDistrito3.jsx";
+import FaseMercado1 from "./FaseMercado1.jsx";
+import FaseMercado2 from "./FaseMercado2.jsx";
+import FaseMercado3 from "./FaseMercado3.jsx";
+import FaseCiudad1 from "./FaseCiudad1.jsx";
+import FaseCiudad2 from "./FaseCiudad2.jsx";
+import FaseCiudad3 from "./FaseCiudad3.jsx";
 import MapaBosque from "./MapaBosque.jsx";
 import MapaDistritos from "./MapaDistritos.jsx";
+import WikiBosque1 from "./WikiBosque1.jsx";
+import Fase3 from "../pages/Fase3.jsx";
+import Fase4 from "../pages/Fase4.jsx";
 
 // Coordenadas de ejemplo
 const puntosRuta = [
@@ -67,13 +78,26 @@ function Map() {
   // Renderizar la fase seleccionada
   if (fase === "mapaBosque") return <MapaBosque setFase={setFase} />;
   if (fase === "mapaDistrito") return <MapaDistritos setFase={setFase} />;
-  if (fase === "faseBosque") return <FaseBosque />; // Nivel 1
-  if (fase === "faseBosque2") return <FaseBosque2 />; // Nivel 2
-  if (fase === "faseBosque3") return <FaseBosque3 />; // Nivel 3
-  if (fase === "distrito1") return <FaseDistrito1 />
-  if (fase === "distrito") return <DistritoDatos />;
+  if (fase === "mapaMercado") return <Fase3 setFase={setFase} />
+  if (fase === "coyalxuh") return <Fase4 setFase={setFase} />
+  if (fase === "faseBosque") return <FaseBosque setFase={setFase} />; // Nivel 1
+  if (fase === "faseBosque2") return <FaseBosque2 setFase={setFase} />; // Nivel 2
+  if (fase === "faseBosque3") return <FaseBosque3 setFase={setFase} />; // Nivel 3
+  if (fase === "wiki1") return <WikiBosque1 setFase={setFase} />;
+  if (fase === "distrito1") return <FaseDistrito1 setFase={setFase} />
+  if (fase === "distrito2") return <FaseDistrito2 setFase={setFase} />
+  if (fase === "distrito3") return <FaseDistrito3 setFase={setFase} />
+  if (fase === "distrito") return <DistritoDatos setFase={setFase} />;
   if (fase === "mercado") return <MercadoMemoria />;
+  if (fase === "faseMercado1") return <FaseMercado1 setFase={setFase} />;
+  if (fase === "faseMercado2") return <FaseMercado2 setFase={setFase} />;
+  if (fase === "faseMercado3") return <FaseMercado3 setFase={setFase} />;
   if (fase === "ciudad") return <CiudadCoyolxaum />;
+  if (fase === "faseCiudad1") return <FaseCiudad1 setFase={setFase} />;
+  if (fase === "faseCiudad2") return <FaseCiudad2 setFase={setFase} />;
+  if (fase === "faseCiudad3") return <FaseCiudad3 setFase={setFase} />
+
+
 
   // Vista principal del mapa
   return (
@@ -140,13 +164,13 @@ function Map() {
         texto="Mercado de memoria"
         top="670px"
         left="630px"
-        onClick={() => setFase("mercado")}
+        onClick={() => setFase("mapaMercado")}
       />
       <BotonMapa
         texto="Coyalxuh Bot"
         top="480px"
         left="876px"
-        onClick={() => setFase("ciudad")}
+        onClick={() => setFase("coyalxuh")}
       />
     </div>
   );

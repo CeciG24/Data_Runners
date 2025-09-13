@@ -1,0 +1,123 @@
+.wiki-bosque {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+}
+.wiki-fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/fondo_inicio.png'); /* tu imagen con ladrillos aztecas + circuitos */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0.5); /* oscurece para resaltar los cuadros */
+  z-index: 0;
+}
+
+@keyframes fondo-azteca {
+  0% { background-position: 0 0, center; }
+  100% { background-position: 200px 200px, center; }
+}
+
+/* Panel principal */
+.wiki-panel {
+  position: relative;
+  z-index: 10;
+  width: 80%;
+  max-width: 1000px;
+  margin: 5% auto;
+  background: rgba(0, 0, 0, 0.7);
+  border: 3px solid #ff00ff;
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  box-shadow: 0 0 40px #ff00ff, 0 0 20px #00ffff inset;
+}
+
+/* Imagen del búho */
+.buho-container {
+  flex: 0 0 200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.buho-img {
+  width: 150px;
+  height: auto;
+  border: 2px solid #0ff;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #ff00ff, 0 0 20px #00ffff inset;
+  animation: flotar 3s ease-in-out infinite alternate;
+}
+
+/* Diálogo y texto */
+.wiki-dialogo {
+  flex: 1;
+  color: #00ffcc;
+}
+
+.wiki-titulo {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px #000, 0 0 10px #ff00ff;
+}
+
+.wiki-texto {
+  font-size: 1rem;
+  white-space: pre-line;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  text-shadow: 1px 1px #000;
+}
+
+/* Botón */
+.btn-siguiente {
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+  color: #000;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.btn-siguiente:hover {
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  transform: scale(1.05);
+}
+
+/* Animación de flotación del búho */
+@keyframes flotar {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+/* Cada cuadro de texto */
+.wiki-cuadro {
+  background: rgba(0,0,0,0.8);
+  border: 2px solid #ff00ff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px #ff00ff, 0 0 20px #00ffff inset;
+  animation: aparecer 0.5s ease-in-out;
+}
+
+@keyframes aparecer {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+

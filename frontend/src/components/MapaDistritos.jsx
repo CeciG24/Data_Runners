@@ -1,23 +1,32 @@
 // MapaDistritos.jsx
 import React, { useState } from "react";
 import "./MapaDistritos.css";
-import distritoImg from "../assets/DistritodeDatos.png";
+import distritoImg from "../assets/fondo_distrito.png";
 
 const MapaDistritos = ({ setFase }) => {
   const [selectedButton, setSelectedButton] = useState(null);
 
   const handleButtonClick = (number) => {
-    setSelectedButton(selectedButton === number ? null : number);
+    setSelectedButton(number);
 
-    setTimeout(() => {
-      if (number === 1) setFase("distrito1");
-      else if (number === 2) setFase("distrito2");
-      else if (number === 3) setFase("distrito3");
-    }, 500);
+    // Cada botón manda a su respectivo nivel
+    switch (number) {
+      case 1:
+        setFase("distrito1");
+        break;
+      case 2:
+        setFase("distrito2");
+        break;
+      case 3:
+        setFase("distrito3");
+        break;
+      default:
+        setFase(null);
+    }
   };
 
   const buttonPositions = [
-    { number: 1, top: "100%", left: "40%", width: "80px", height: "80px" },
+    { number: 1, top: "85%", left: "35%", width: "80px", height: "80px" },
     { number: 2, top: "75%", left: "50%", width: "80px", height: "80px" },
     { number: 3, top: "100%", left: "72%", width: "80px", height: "80px" },
   ];

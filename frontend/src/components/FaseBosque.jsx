@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./FaseBosque.css";
 import tigreImg from "../assets/leopardo.png";
 
-const FaseBosque = () => {
+const FaseBosque = ({ setFase }) => {
   const [showModal, setShowModal] = useState(false);
   const [nivel, setNivel] = useState(null);
   const [query, setQuery] = useState("");
   const [feedback, setFeedback] = useState("");
   const [consejo, setConsejo] = useState(""); // 🔹 consejo mostrado
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchNivel = async () => {
@@ -42,11 +44,11 @@ const FaseBosque = () => {
   };
 
   const handleRendirse = () => {
-    setShowModal(true);
-    setTimeout(() => {
-      window.location.href = "/map";
-    }, 6000);
-  };
+  setShowModal(true);
+  setTimeout(() => {
+    setFase("mapa"); // Aquí pones la ruta de tu mapa principal, ej. "/" o "/mapa"
+  }, 6000);
+};
 
   // 🔹 Consejo hardcodeado para el nivel 1
   const handleConsejo = () => {

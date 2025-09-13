@@ -5,12 +5,12 @@
   overflow: hidden;
 
   /* Fondo ajustable a cualquier pantalla */
-  background-size: cover;       /* ocupa todo el contenedor */
-  background-position: center;  /* centra la imagen */
-  background-repeat: no-repeat; /* no repite la imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* Botones */
+/* Botones de niveles */
 .buttons-container {
   position: absolute;
   top: 0;
@@ -39,7 +39,7 @@
   background-color: rgba(23, 114, 61, 0.2);
 }
 
-/* Indicador */
+/* Indicador de nivel seleccionado */
 .selection-indicator {
   position: fixed;
   bottom: 20px;
@@ -51,6 +51,55 @@
   border-radius: 25px;
   font-size: 1.2rem;
   font-weight: bold;
-  z-index: 20; /* encima de todo */
+  z-index: 20;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-azteca {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #2a9331;
+  padding: 20px 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Botón regresar al mapa */
+.boton-regresar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000; /* encima de todo */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #2a9331;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.boton-regresar:hover {
+  background-color: rgba(42, 147, 49, 0.9);
+  color: #fff;
 }

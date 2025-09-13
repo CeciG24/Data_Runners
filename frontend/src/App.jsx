@@ -6,8 +6,6 @@ import SignUp from "./pages/SignUp";
 import StartScreen from "./pages/StartScreen";
 import Roles from "./pages/Roles";
 import Map from "./components/Map"
-import Fase3 from "./pages/Fase3";
-import Fase4 from "./pages/Fase4";
 
 function AppRoutes() {
   const { user } = useContext(AuthContext);
@@ -16,15 +14,13 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<StartScreen />} />
 
-      <Route path="/login" element={!user ? <Login /> : <Navigate to="/map" />} />
-      <Route path="/signup" element={!user ? <SignUp /> : <Navigate to="/map" />} />
+      <Route path="/login" element={<Login /> } />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/map" element={<Map />} />
-      <Route path="/roles" element={<Roles />} />
-
+      <Route path="/roles" element={user ? <Roles /> : <Navigate to="/login" replace />} />
+      {/* <Route path="/nivel/:id" element={<NivelPage />} /> */}
       <Route path="*" element={<Navigate to={user ? "/map" : "/login"} />} />
     </Routes>
-
-      // <Route path="/map" element={user ? <Map /> : <Navigate to="/login" />} />
 
   );
 }

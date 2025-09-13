@@ -9,11 +9,13 @@ import nivel1Img from "/nivel/nivel4_1.png";
 import nivel2Img from "/nivel/nivel4_2.png";
 import nivel3Img from "/nivel/nivel4_3.png";
 
-export default function Fase4() {
+export default function Fase4({ setFase }) {
   const navigate = useNavigate();
 
   const irANivel = (nivel) => {
-    navigate(`/fase4/nivel${nivel}`);
+    if (nivel === 1) setFase("faseCiudad1");
+    else if (nivel === 2) setFase("faseCiudad2");
+    else if (nivel === 3) setFase("faseCiudad3");
   };
 
   return (
