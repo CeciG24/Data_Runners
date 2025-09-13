@@ -39,7 +39,7 @@ const FaseBosque3 = ({ setFase }) => {
   
   const handleConsultar = async () => {
     try {
-      const res = await fetch(`https://datarunnersdeploy.onrender.com/niveles/1/resolver`, {
+      const res = await fetch(`https://datarunnersdeploy.onrender.com/niveles/3/resolver`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query_usuario: query }),
