@@ -27,6 +27,9 @@ import FaseCiudad3 from "./FaseCiudad3.jsx";
 import MapaBosque from "./MapaBosque.jsx";
 import MapaDistritos from "./MapaDistritos.jsx";
 import WikiBosque1 from "./WikiBosque1.jsx";
+import WikiDistrito1 from "./WikiDistrito1.jsx";
+import WikiMercado1 from "./WikiMercado1.jsx";
+import WikiCiudad1 from "./WikiCiudad1.jsx";
 import Fase3 from "../pages/Fase3.jsx";
 import Fase4 from "../pages/Fase4.jsx";
 
@@ -84,6 +87,9 @@ function Map() {
   if (fase === "faseBosque2") return <FaseBosque2 setFase={setFase} />; // Nivel 2
   if (fase === "faseBosque3") return <FaseBosque3 setFase={setFase} />; // Nivel 3
   if (fase === "wiki1") return <WikiBosque1 setFase={setFase} />;
+  if (fase === "wiki2") return <WikiDistrito1 setFase={setFase} />;
+  if (fase === "wiki3") return <WikiMercado1 setFase={setFase} />;
+  if (fase === "wiki4") return <WikiCiudad1 setFase={setFase} />;
   if (fase === "distrito1") return <FaseDistrito1 setFase={setFase} />
   if (fase === "distrito2") return <FaseDistrito2 setFase={setFase} />
   if (fase === "distrito3") return <FaseDistrito3 setFase={setFase} />

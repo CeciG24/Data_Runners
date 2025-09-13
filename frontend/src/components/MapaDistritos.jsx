@@ -5,6 +5,12 @@ import distritoImg from "../assets/fondo_distrito.png";
 
 const MapaDistritos = ({ setFase }) => {
   const [selectedButton, setSelectedButton] = useState(null);
+  // Posición del botón Mapa Principal
+  const botonMapaPrincipal = { top: "90%", left: "90%", width: "120px", height: "50px" };
+
+  // Posición del botón Wiki (búho)
+  const wikiButtonPosition = { top: "20%", left: "5%", width: "100px", height: "100px" };
+
 
   const handleButtonClick = (number) => {
     setSelectedButton(number);
@@ -26,9 +32,9 @@ const MapaDistritos = ({ setFase }) => {
   };
 
   const buttonPositions = [
-    { number: 1, top: "85%", left: "35%", width: "80px", height: "80px" },
+    { number: 1, top: "95%", left: "40%", width: "80px", height: "80px" },
     { number: 2, top: "75%", left: "50%", width: "80px", height: "80px" },
-    { number: 3, top: "100%", left: "72%", width: "80px", height: "80px" },
+    { number: 3, top: "95%", left: "72%", width: "80px", height: "80px" },
   ];
 
   return (
@@ -57,6 +63,48 @@ const MapaDistritos = ({ setFase }) => {
           Distrito Seleccionado: {selectedButton}
         </div>
       )}
+      {/* Botón Mapa Principal */}
+      <button
+        style={{
+          position: "absolute",
+          top: botonMapaPrincipal.top,
+          left: botonMapaPrincipal.left,
+          width: botonMapaPrincipal.width,
+          height: botonMapaPrincipal.height,
+          backgroundColor: "#2a9631",
+          color: "white",
+          border: "2px solid #fff",
+          borderRadius: "10px",
+          fontWeight: "bold",
+          fontSize: "1rem",
+          cursor: "pointer",
+          zIndex: 20,
+        }}
+        onClick={() => setFase("mapa")}
+      >
+        🏠 Mapa Principal
+      </button>
+
+      {/* Botón Wiki (búho) */}
+      <button
+        style={{
+          position: "absolute",
+          top: wikiButtonPosition.top,
+          left: wikiButtonPosition.left,
+          width: wikiButtonPosition.width,
+          height: wikiButtonPosition.height,
+          backgroundColor: "#444",
+          color: "white",
+          border: "2px solid #fff",
+          borderRadius: "50%",
+          fontSize: "2rem",
+          cursor: "pointer",
+          zIndex: 20,
+        }}
+        onClick={() => setFase("wiki2")}
+      >
+        🦉
+      </button>
     </div>
   );
 };

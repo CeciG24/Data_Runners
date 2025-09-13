@@ -23,6 +23,7 @@ const FaseBosque = ({ setFase }) => {
         console.error("Error cargando nivel:", err);
       }
     };
+
     const fetchTabla = async () => {
       try {
         const res = await fetch("https://datarunnersdeploy.onrender.com/niveles/tabla/1");
@@ -137,46 +138,46 @@ const handleConsultar = async () => {
           )}
 
           {tabla && (
-  <table className="fase-tabla">
-    <thead>
-      <tr>
-        {(Array.isArray(tabla.esquema)
-          ? tabla.esquema
-          : typeof tabla.esquema === "string"
-            ? tabla.esquema.split(",")
-            : []
-        ).map((col, index) => (
-          <th key={index}>{col.split(" ")[0]}</th>
-        ))}
-      </tr>
-    </thead>
-    <tbody>
-      {(
-        Array.isArray(tabla.datos)
-          ? tabla.datos
-          : typeof tabla.datos === "string"
-            ? JSON.parse(tabla.datos)
-            : []
-      ).map((fila, i) => (
-        <tr key={i}>
-          {fila.map((celda, j) => (
-            <td key={j}>{celda}</td>
-          ))}
-        </tr>
-      ))}
-    </tbody>
-  </table>
-)}
+            <table className="fase-tabla">
+              <thead>
+                <tr>
+                  {(Array.isArray(tabla.esquema)
+                    ? tabla.esquema
+                    : typeof tabla.esquema === "string"
+                      ? tabla.esquema.split(",")
+                      : []
+                  ).map((col, index) => (
+                    <th key={index}>{col.split(" ")[0]}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {(
+                  Array.isArray(tabla.datos)
+                    ? tabla.datos
+                    : typeof tabla.datos === "string"
+                      ? JSON.parse(tabla.datos)
+                      : []
+                ).map((fila, i) => (
+                  <tr key={i}>
+                    {fila.map((celda, j) => (
+                      <td key={j}>{celda}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
 
           {/* Botón Siguiente Nivel */}
-{nivelCompletado && (
-  <button
-    onClick={() => setFase("faseBosque2")} // Cambiar según el siguiente nivel
-    style={{ backgroundColor: "#4CAF50", color: "#fff" }}
-  >
-    Siguiente Nivel ➡
-  </button>
-)}
+        {nivelCompletado && (
+          <button
+            className="bg-[#4CAF50] text-white text-xl px-4 py-3 hover:bg-[#257a28] transition-colors"
+            onClick={() => setFase("faseBosque2")} // Cambiar según el siguiente nivel
+          >
+            Siguiente Nivel ➡
+          </button>
+        )}
 
 
         </div>

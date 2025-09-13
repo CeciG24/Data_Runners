@@ -3,7 +3,7 @@ import "./WikiBosque.css";
 import buhoImg from "../img/buho-robot.png";
 import axios from "axios";
 
-const WikiBosque = ({ token, setFase, mapa }) => {
+const WikiBosque = ({ token, setFase }) => {
   const [wikis, setWikis] = useState([]);
 
   // Cargar todos los wikis al montar el componente
@@ -26,7 +26,7 @@ const WikiBosque = ({ token, setFase, mapa }) => {
       <div className="wiki-fondo" />
       <button
         className="btn-volver"
-        onClick={() => setFase("mapaBosque")}
+        onClick={() => setFase("mapaMercado")}
         style={{
           position: "absolute",
           top: "600px",

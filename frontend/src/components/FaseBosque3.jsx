@@ -166,14 +166,14 @@ const FaseBosque3 = ({ setFase }) => {
   </table>
         )}
         {/* Botón Siguiente Nivel */}
-{nivelCompletado && (
-  <button
-    onClick={() => setFase("faseDistrito1")} // Cambiar según el siguiente nivel
-    style={{ backgroundColor: "#4CAF50", color: "#fff" }}
-  >
-    Siguiente Nivel ➡
-  </button>
-)}
+          {nivelCompletado && (
+            <button
+              className="bg-[#4CAF50] text-white text-xl px-4 py-3 hover:bg-[#257a28] transition-colors"
+              onClick={() => setFase("faseDistrito1")} // Cambiar según el siguiente nivel
+            >
+              Siguiente Nivel ➡
+            </button>
+          )}
 
           </div>
   

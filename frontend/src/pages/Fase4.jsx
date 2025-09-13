@@ -10,6 +10,12 @@ import nivel2Img from "/nivel/nivel4_2.png";
 import nivel3Img from "/nivel/nivel4_3.png";
 
 export default function Fase4({ setFase }) {
+  // Posición del botón Mapa Principal
+  const botonMapaPrincipal = { top: "90%", left: "90%", width: "120px", height: "50px" };
+
+  // Posición del botón Wiki (búho)
+  const wikiButtonPosition = { top: "20%", left: "5%", width: "100px", height: "100px" };
+
   const navigate = useNavigate();
 
   const irANivel = (nivel) => {
@@ -63,6 +69,48 @@ export default function Fase4({ setFase }) {
         shadowColor={"0 0 15px rgba(89,173,215,0.9)"}
 
       />
+      {/* Botón Mapa Principal */}
+        <button
+          style={{
+            position: "absolute",
+            top: botonMapaPrincipal.top,
+            left: botonMapaPrincipal.left,
+            width: botonMapaPrincipal.width,
+            height: botonMapaPrincipal.height,
+            backgroundColor: "#2a9631",
+            color: "white",
+            border: "2px solid #fff",
+            borderRadius: "10px",
+            fontWeight: "bold",
+            fontSize: "1rem",
+            cursor: "pointer",
+            zIndex: 20,
+          }}
+          onClick={() => setFase("mapa")}
+        >
+          🏠 Mapa Principal
+        </button>
+
+        {/* Botón Wiki (búho) */}
+        <button
+          style={{
+            position: "absolute",
+            top: wikiButtonPosition.top,
+            left: wikiButtonPosition.left,
+            width: wikiButtonPosition.width,
+            height: wikiButtonPosition.height,
+            backgroundColor: "#444",
+            color: "white",
+            border: "2px solid #fff",
+            borderRadius: "50%",
+            fontSize: "2rem",
+            cursor: "pointer",
+            zIndex: 20,
+          }}
+          onClick={() => setFase("wiki4")}
+        >
+          🦉
+        </button>
     </div>
   );
 }

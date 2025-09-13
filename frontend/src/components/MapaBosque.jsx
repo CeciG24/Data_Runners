@@ -79,7 +79,7 @@ const MapaBosque = ({ setFase }) => {
             cursor: "pointer",
             zIndex: 20,
           }}
-          onClick={() => setFase("mapaPrincipal")}
+          onClick={() => setFase("mapa")}
         >
           🏠 Mapa Principal
         </button>

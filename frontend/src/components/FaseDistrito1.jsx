@@ -11,7 +11,9 @@ const FaseDistrito1 = ({ setFase }) => {
   const [feedback, setFeedback] = useState("");
   const [salidaEsperada, setSalidaEsperada] = useState("");
   const [consejo, setConsejo] = useState(""); // 🔹 consejo mostrado
+  const [nivelCompletado, setNivelCompletado] = useState(false);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const fetchNivel = async () => {
@@ -47,6 +49,11 @@ const FaseDistrito1 = ({ setFase }) => {
       const data = await res.json();
       setFeedback(data.feedback || "Error procesando la respuesta");
       setSalidaEsperada(data.salida_esperada || ""); // 🔹 guardar salida
+
+        // 🔹 Habilitar botón siguiente nivel
+      const correcto = data.feedback !== "La consulta no es correcta, intenta de nuevo";
+      setNivelCompletado(correcto);
+
     } catch (err) {
       console.error("Error al enviar consulta:", err);
       setFeedback("Error de conexión con el servidor");
@@ -159,6 +166,15 @@ const FaseDistrito1 = ({ setFase }) => {
     </tbody>
   </table>
 )}
+          {/* Botón Siguiente Nivel */}
+        {nivelCompletado && (
+          <button
+            className="bg-[#4CAF50] text-white text-xl px-4 py-3 hover:bg-[#257a28] transition-colors"
+            onClick={() => setFase("distrito2")} // Cambiar según el siguiente nivel
+          >
+            Siguiente Nivel ➡
+          </button>
+        )}
 
 
         </div>

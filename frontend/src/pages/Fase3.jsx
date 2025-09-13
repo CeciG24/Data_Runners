@@ -10,6 +10,12 @@ import nivel2Img from "/nivel/nivel3_2.png";
 import nivel3Img from "/nivel/nivel3_3.png";
 
 export default function Fase3({setFase}) {
+  // Posición del botón Mapa Principal
+  const botonMapaPrincipal = { top: "90%", left: "93%", width: "120px", height: "50px" };
+
+  // Posición del botón Wiki (búho)
+  const wikiButtonPosition = { top: "20%", left: "5%", width: "100px", height: "100px" };
+
   const navigate = useNavigate();
 
   const irANivel = (nivel) => {
@@ -33,42 +39,6 @@ export default function Fase3({setFase}) {
         backgroundPosition: "center",
       }}
     >
-      {/* SVG de líneas */}
-      {/* 
-      <svg
-        className="absolute w-full h-full"
-        viewBox="0 0 1000 1000"
-        preserveAspectRatio="none"
-      >
-        {/* Línea del nivel 1 al nivel 2 */}
-        {/* 
-        <line
-        x1="33%" y1="65%"
-        x2="33%" y2="45%"
-        stroke="#7d6b52" strokeWidth="8" strokeLinecap="round"
-        />
-
-        <line
-        x1="33.5%" y1="45%"
-        x2="50%" y2="45%"
-        stroke="#7d6b52" strokeWidth="12" strokeLinecap="round"
-        />
-        */}
-        {/* Línea del nivel 2 al nivel 3 */}
-        {/* 
-        <line
-        x1="50%" y1="45%"
-        x2="72.5%" y2="45%"
-        stroke="#7d6b52" strokeWidth="12" strokeLinecap="round"
-        />
-        <line
-        x1="73%" y1="45%"
-        x2="73%" y2="60%"
-        stroke="#7d6b52" strokeWidth="8" strokeLinecap="round"
-        />
-      </svg>
-      */}
-      
 
       {/* Botones de niveles */}
       <NivelButton
@@ -99,6 +69,49 @@ export default function Fase3({setFase}) {
         shadowColor={"0 0 15px rgba(212,175,55,0.9)"}
 
       />
+
+      {/* Botón Mapa Principal */}
+        <button
+          style={{
+            position: "absolute",
+            top: botonMapaPrincipal.top,
+            left: botonMapaPrincipal.left,
+            width: botonMapaPrincipal.width,
+            height: botonMapaPrincipal.height,
+            backgroundColor: "#2a9631",
+            color: "white",
+            border: "2px solid #fff",
+            borderRadius: "10px",
+            fontWeight: "bold",
+            fontSize: "1rem",
+            cursor: "pointer",
+            zIndex: 20,
+          }}
+          onClick={() => setFase("mapa")}
+        >
+          🏠 Mapa Principal
+        </button>
+
+        {/* Botón Wiki (búho) */}
+        <button
+          style={{
+            position: "absolute",
+            top: wikiButtonPosition.top,
+            left: wikiButtonPosition.left,
+            width: wikiButtonPosition.width,
+            height: wikiButtonPosition.height,
+            backgroundColor: "#444",
+            color: "white",
+            border: "2px solid #fff",
+            borderRadius: "50%",
+            fontSize: "2rem",
+            cursor: "pointer",
+            zIndex: 20,
+          }}
+          onClick={() => setFase("wiki3")}
+        >
+          🦉
+        </button>
     </div>
   );
 }
