@@ -12,3 +12,4 @@ from .wiki import Wiki
 from .usuarioWiki import UsuarioWiki
 from .progreso import Progreso
 from .score import Score
+from .tablasEjemplo import TablasEjemplo
