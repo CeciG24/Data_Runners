@@ -48,14 +48,17 @@ def resolver_nivel(id):
 
         if respuesta and (respuesta.sql_correcta == query_usuario):
             feedback = respuesta.feedback
+            salida = respuesta.salida_esperada
         else:
             feedback = "La consulta no es correcta, intenta de nuevo"
-        
+            salida = " "
+
         return jsonify({
             "success": True,
             "nivel":id,
             "query": query_usuario,
             "feedback": feedback,
+            "salida_esperada": salida,
             "message": "Solucion enviada exitosamente",
         }), 200
         

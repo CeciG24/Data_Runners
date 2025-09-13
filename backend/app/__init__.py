@@ -18,6 +18,8 @@ def create_app():
     from .routes.ProgresoRoutes import progreso_bp
     from .routes.FasesRoutes import fases_bp
     from .routes.NivelesRoutes import niveles_bp
+    from .routes.wikiRoutes import wiki_bp
+    from .routes.ScoreRoutes import scores_bp
     # Configuración de la BD
     app.config['SQLALCHEMY_DATABASE_URI'] = (
         "postgresql://datarunnerdb_user:LOJT5XTsQnfI4dYRkrZBIcz1TO1c4nNR@"
@@ -44,5 +46,7 @@ def create_app():
     app.register_blueprint(niveles_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(progreso_bp)
+    app.register_blueprint(scores_bp)
+    app.register_blueprint(wiki_bp)
     CORS(app)
     return app
